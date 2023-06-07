@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 namespace TocClient
 {
@@ -17,8 +17,8 @@ namespace TocClient
 
         private void Start()
         {
-            _startBtn = UnityHelper.GetComponent<Button>(gameObject, "StartBtn");
-            _exitBtn = UnityHelper.GetComponent<Button>(gameObject, "ExitBtn");
+            _startBtn = UnityHelper.GetComponent<Button>(gameObject, "Start");
+            _exitBtn = UnityHelper.GetComponent<Button>(gameObject, "Quit");
             _canvasGroup = GetComponent<CanvasGroup>();
             AddBtnListener();
         }
@@ -42,7 +42,7 @@ namespace TocClient
             {
                 Debug.Log("startGame");
                 UIManager.Instance.PopPanel();
-                UIManager.Instance.PushPanel(Constants.Form_BattleTest);
+                SceneManager.LoadScene("Main");
             });
             _exitBtn.onClick.AddListener(() =>
             {

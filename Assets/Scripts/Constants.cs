@@ -12,8 +12,9 @@ public class Constants
         public const string Form_MainMenu = "MainMenu";
         public const string Form_BattleTest = "BattleTest";
 
-        public const string Msg_UseCard = "Msg_UseCard";
-        public const string Msg_PlayerHealthChange = "Msg_PlayerHealthChange";
-        public const string Msg_PlayerAttributeChange = "Msg_PlayerAttributeChange";
+        public const string Msg_BattleExpChange = "Msg_BattleExpChange";
+        public const string Msg_BattleCoinChange = "Msg_BattleCoinChange";
+        public const string Msg_BattleTimeChange = "Msg_BattleTimeChange";
+        public const string Msg_BattleHpChange = "Msg_BattleHpChange";
     }
 }

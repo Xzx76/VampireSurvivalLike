@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -133,22 +133,22 @@ namespace TocClient
         {
             LoadCheck check = new LoadCheck("UI信息");
             GameLaunch.AddloadCheck(check);
-            //AssetManager.Instance.LoadAssetAsync<TextAsset>(Constants.Cfg_UIPanel, asset =>
-            //{
-            //    List<Cfg_Cs_UIPanel> result = JsonMapper.ToObject<List<Cfg_Cs_UIPanel>>(asset.text);
-            //    int count = result.Count;
-            //    if (_uiPanelInfo == null)
-            //        _uiPanelInfo = new Dictionary<string, UIPanelInfo>();
-            //    for (int i = 0; i < count; i++)
-            //    {
-            //        UIPanelInfo uIPanelInfo = new UIPanelInfo();
-            //        uIPanelInfo.UIPanelScripts = Typen(result[i].UiPanelScripts);
-            //        uIPanelInfo.UIPanelName = result[i].UiPanelName;
-            //        uIPanelInfo.UIPanelPrefab = result[i].UiPrefabPath;
-            //        _uiPanelInfo[uIPanelInfo.UIPanelName] = uIPanelInfo;
-            //    }
-            //    check.SetReady();
-            //});
+            AssetManager.Instance.LoadAssetAsync<TextAsset>(Constants.Cfg_UIPanel, asset =>
+            {
+                List<Cfg_Cs_UIPanel> result = JsonMapper.ToObject<List<Cfg_Cs_UIPanel>>(asset.text);
+                int count = result.Count;
+                if (_uiPanelInfo == null)
+                    _uiPanelInfo = new Dictionary<string, UIPanelInfo>();
+                for (int i = 0; i < count; i++)
+                {
+                    UIPanelInfo uIPanelInfo = new UIPanelInfo();
+                    uIPanelInfo.UIPanelScripts = Typen(result[i].UiPanelScripts);
+                    uIPanelInfo.UIPanelName = result[i].UiPanelName;
+                    uIPanelInfo.UIPanelPrefab = result[i].UiPrefabPath;
+                    _uiPanelInfo[uIPanelInfo.UIPanelName] = uIPanelInfo;
+                }
+                check.SetReady();
+            });
         }
         public static Type Typen(string typeName)
 

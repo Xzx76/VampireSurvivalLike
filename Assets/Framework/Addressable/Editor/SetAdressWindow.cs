@@ -48,7 +48,6 @@ public class SetAdressWindow : EditorWindow
         isChooseTarget = false;
         version = Application.version;
         setting = AssetDatabase.LoadAssetAtPath<AddressableAssetSettings>("Assets/AddressableAssetsData/AddressableAssetSettings.asset");
-        url = PlayerPrefs.GetString(setting.profileSettings.GetProfileName(setting.activeProfileId) + "_BuildUrl", @"http://[PrivateIpAddress]:[HostingServicePort]");
         environment = (BuildEnvironment)System.Enum.Parse(typeof(BuildEnvironment), PlayerPrefs.GetString("BuildEnvironment", BuildEnvironment.Debug.ToString()));
 
         //path.Add(new PathInfo());
@@ -74,7 +73,6 @@ public class SetAdressWindow : EditorWindow
     }
     private void OnDisable()
     {
-        PlayerPrefs.SetString(environment.ToString() + "_BuildUrl", url);
         PlayerPrefs.SetString("BuildEnvironment", environment.ToString());
     }
 

@@ -77,18 +77,18 @@ namespace TocClient
             //{
             //    Cards[2] = asset;
             //});
-            AssetManager.Instance.CreatePoolAsync("CardPrefab");
+            //AssetManager.Instance.CreatePoolAsync("CardPrefab");
         }
         private void LoadCardQuilitySprite()
         {
-            for (int i = 0; i < 3; i++)
+/*            for (int i = 0; i < 3; i++)
             {
                 int idx = i;
                 AssetManager.Instance.LoadAssetAsync<Sprite>("CardQuility" + idx, sprite=>
                    {
                        cardQuilitySprites.Add(idx, sprite);
                    });
-            }
+            }*/
             
         }
         /// <summary>
@@ -123,8 +123,8 @@ namespace TocClient
         //}
         private void LoadCardsInfo()
         {
-            LoadCheck check = new LoadCheck("卡牌信息");
-            GameLaunch.AddloadCheck(check);
+           /* LoadCheck check = new LoadCheck("卡牌信息");
+            GameLaunch.AddloadCheck(check);*/
 
             //AssetManager.Instance.LoadAssetAsync<TextAsset>(Constants.Cfg_CardInfo, asset =>
             //{

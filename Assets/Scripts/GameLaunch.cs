@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.SceneManagement;
 
 namespace TocClient
 {
@@ -19,7 +20,6 @@ namespace TocClient
         private static LoadCheck[] _loadComplete = null;
         private static int _checkCount = 0;
         private bool _isGameStart;
-        public Transform BattleRoot;
         public void SetInitReady()
         {
             _initReady = true;
@@ -39,6 +39,8 @@ namespace TocClient
 
         public override void Awake()
         {
+            if (_isGameStart)
+                return;
             base.Awake();
             //LitJson float
             registerFloat();
@@ -70,11 +72,6 @@ namespace TocClient
             GameObject uiRoot = handle.Result as GameObject;
             DontDestroyOnLoad(uiRoot);
             Transform root = uiRoot.transform;
-            AsyncOperationHandle handle1 = AssetManager.Instance.InstantiateWithOpr("Battle_Root");
-            yield return handle1;
-            GameObject battleRoot = handle1.Result as GameObject;
-            BattleRoot = battleRoot.transform;
-            DontDestroyOnLoad(battleRoot);
             //AssetManager.Instance.Add(TransName.UIRoot, root);
             //AssetManager.Instance.Add(TransName.UICamera, root.Find("UICamera"));
             //UIFormManager.Instance.Init(new FormFactory(), root, root.Find("NormalRoot"), root.Find("UnderRoot"), root.Find("PopupRoot"));
@@ -141,6 +138,7 @@ namespace TocClient
             _loadComplete = null;
             _checkCount = 0;
             //进入主菜单
+            SceneManager.LoadScene("Main Menu");
             UIManager.Instance.PushPanel(Constants.Form_MainMenu);
         }
         private void Update()
