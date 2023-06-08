@@ -66,18 +66,6 @@ namespace TocClient
             {
                 _hpSlider.value = hpSliderValue;
             });
-            /*            _startBtn.onClick.AddListener(() =>
-                        {
-                            Debug.Log("startGame");
-                            UIManager.Instance.PopPanel();
-                            SceneManager.LoadScene("Main");
-                        });
-                        _exitBtn.onClick.AddListener(() =>
-                        {
-                            Debug.Log("ExitGame");
-                            UIManager.Instance.PopPanel();
-                            //UIManager.Instance.PushPanel(panelType);
-                        });*/
         }
         /*/// <summary>
         /// 将某面板显示出来

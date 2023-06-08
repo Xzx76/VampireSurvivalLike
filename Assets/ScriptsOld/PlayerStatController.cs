@@ -39,7 +39,7 @@ public class PlayerStatController : MonoBehaviour
     {
         if(UIController.instance.levelUpPanel.activeSelf == true)
         {
-            UpdateDisplay();
+            //UpdateDisplay();
         }
     }
 
