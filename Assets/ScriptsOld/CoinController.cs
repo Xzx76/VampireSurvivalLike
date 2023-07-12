@@ -2,38 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinController : MonoBehaviour
+namespace VampireSLike
 {
-    public static CoinController instance;
-    private void Awake()
+    public class CoinController : MonoBehaviour
     {
-        instance = this;
-    }
+        public static CoinController instance;
+        private void Awake()
+        {
+            instance = this;
+        }
 
-    public int currentCoins;
+        public int currentCoins;
 
-    public CoinPickup coin;
+        public CoinPickup coin;
 
-    public void AddCoins(int coinsToAdd)
-    {
-        currentCoins += coinsToAdd;
+        public void AddCoins(int coinsToAdd)
+        {
+            currentCoins += coinsToAdd;
 
-        UIController.instance.UpdateCoins();
+            UIController.instance.UpdateCoins();
 
-        SFXManager.instance.PlaySFXPitched(2);
-    }
+            SFXManager.instance.PlaySFXPitched(2);
+        }
 
-    public void DropCoin(Vector3 position, int value)
-    {
-        CoinPickup newCoin = Instantiate(coin, position + new Vector3(.2f, .1f, 0f), Quaternion.identity);
-        newCoin.coinAmount = value;
-        newCoin.gameObject.SetActive(true);
-    }
+        public void DropCoin(Vector3 position, int value)
+        {
+            CoinPickup newCoin = Instantiate(coin, position + new Vector3(.2f, .1f, 0f), Quaternion.identity);
+            newCoin.coinAmount = value;
+            newCoin.gameObject.SetActive(true);
+        }
 
-    public void SpendCoins(int coinsToSpend)
-    {
-        currentCoins -= coinsToSpend;
+        public void SpendCoins(int coinsToSpend)
+        {
+            currentCoins -= coinsToSpend;
 
-        UIController.instance.UpdateCoins();
+            UIController.instance.UpdateCoins();
+        }
     }
 }
+

@@ -1,4 +1,4 @@
-namespace TocClient
+namespace VampireSLike
 {
 /// <summary>
 /// 事件常量

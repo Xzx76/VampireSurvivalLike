@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace VampireSLike
 {
-    private Transform target;
-
-    // Start is called before the first frame update
-    void Start()
+    public class CameraController : MonoBehaviour
     {
-        target = FindObjectOfType<PlayerController>().transform;
-    }
+        private Transform target;
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        // Start is called before the first frame update
+        void Start()
+        {
+            target = FindObjectOfType<PlayerController>().transform;
+        }
+
+        // Update is called once per frame
+        void LateUpdate()
+        {
+            transform.position = new Vector3(target.position.x, target.position.y, transform.position.z);
+        }
     }
 }
+

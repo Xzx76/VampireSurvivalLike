@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
-namespace TocClient
+namespace VampireSLike
 {
     public class GameLaunch : MonoSingleton<GameLaunch>
     {

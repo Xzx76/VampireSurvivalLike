@@ -10,7 +10,7 @@ using System.Reflection;
 /// UI框架的核心管理类
 /// </summary>
 
-namespace TocClient
+namespace VampireSLike
 {
     public class UIManager : MonoSingleton<UIManager>
     {

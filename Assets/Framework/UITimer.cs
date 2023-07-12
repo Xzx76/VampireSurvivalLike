@@ -1,4 +1,4 @@
-﻿/*------------------------------
+/*------------------------------
 //Copyright (C) moshi
 //Author:zdy
 //FileCreateDate:2022-08-02 星期二 17:15
@@ -7,7 +7,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace TocClient
+namespace VampireSLike
 {
     public class UITimer : MonoBehaviour
     {

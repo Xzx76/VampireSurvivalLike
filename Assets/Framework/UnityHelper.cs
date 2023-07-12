@@ -1,6 +1,6 @@
 
 using UnityEngine;
-namespace TocClient
+namespace VampireSLike
 {
     public class UnityHelper
     {

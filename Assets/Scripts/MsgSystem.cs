@@ -3,7 +3,7 @@ using System;
 using System.Text;
 using UnityEngine;
  
-namespace TocClient
+namespace VampireSLike
 {
 /// <summary>
 /// 事件系统

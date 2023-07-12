@@ -9,8 +9,8 @@ using System;
 using Excel;
 using LitJson;
 
-namespace TocClient
-	{
+namespace VampireSLike
+{
 	public class ConfigEditorWindows : EditorWindow
 	{
 		Rect rect;

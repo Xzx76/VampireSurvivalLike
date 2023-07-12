@@ -1,11 +1,5 @@
-/*------------------------------
-//Copyright (C) moshi
-//Author:liyk
-//Date:2022/6/29 17:16:37
-//Desc: 
-------------------------------*/
 
-namespace TocClient
+namespace VampireSLike
 {
     public class LoadCheck
     {

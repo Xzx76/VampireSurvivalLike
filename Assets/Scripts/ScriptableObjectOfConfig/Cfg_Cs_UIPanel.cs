@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace TocClient {
+namespace VampireSLike
+{
     public class Cfg_Cs_UIPanel
     {
         public string UiPanelScripts{get;set;}

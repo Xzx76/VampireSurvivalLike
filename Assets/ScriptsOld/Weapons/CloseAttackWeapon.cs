@@ -2,68 +2,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseAttackWeapon : Weapon
+namespace VampireSLike
 {
-    public EnemyDamager damager;
-
-    private float attackCounter, direction;
-
-    // Start is called before the first frame update
-    void Start()
+    public class CloseAttackWeapon : Weapon
     {
-        SetStats();
-    }
+        public EnemyDamager damager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (statsUpdated == true)
+        private float attackCounter, direction;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            statsUpdated = false;
-
             SetStats();
         }
 
-        attackCounter -= Time.deltaTime;
-        if(attackCounter <= 0)
+        // Update is called once per frame
+        void Update()
         {
-            attackCounter = stats[weaponLevel].timeBetweenAttacks;
-
-            direction = Input.GetAxisRaw("Horizontal");
-
-            if (direction != 0)
+            if (statsUpdated == true)
             {
-                if(direction > 0)
+                statsUpdated = false;
+
+                SetStats();
+            }
+
+            attackCounter -= Time.deltaTime;
+            if (attackCounter <= 0)
+            {
+                attackCounter = stats[weaponLevel].timeBetweenAttacks;
+
+                direction = Input.GetAxisRaw("Horizontal");
+
+                if (direction != 0)
                 {
-                    damager.transform.rotation = Quaternion.identity;
-                } else
-                {
-                    damager.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                    if (direction > 0)
+                    {
+                        damager.transform.rotation = Quaternion.identity;
+                    }
+                    else
+                    {
+                        damager.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+                    }
+
                 }
-                
+
+                Instantiate(damager, damager.transform.position, damager.transform.rotation, transform).gameObject.SetActive(true);
+
+                for (int i = 1; i < stats[weaponLevel].amount; i++)
+                {
+                    float rot = (360f / stats[weaponLevel].amount) * i;
+
+                    Instantiate(damager, damager.transform.position, Quaternion.Euler(0f, 0f, damager.transform.rotation.eulerAngles.z + rot), transform).gameObject.SetActive(true);
+
+                }
+
+                SFXManager.instance.PlaySFXPitched(9);
             }
+        }
 
-            Instantiate(damager, damager.transform.position, damager.transform.rotation, transform).gameObject.SetActive(true);
+        void SetStats()
+        {
+            damager.damageAmount = stats[weaponLevel].damage;
+            damager.lifeTime = stats[weaponLevel].duration;
 
-            for (int i = 1; i < stats[weaponLevel].amount; i++)
-            {
-                float rot = (360f / stats[weaponLevel].amount) * i;
+            damager.transform.localScale = Vector3.one * stats[weaponLevel].range;
 
-                Instantiate(damager, damager.transform.position, Quaternion.Euler(0f, 0f, damager.transform.rotation.eulerAngles.z + rot), transform).gameObject.SetActive(true);
-
-            }
-
-            SFXManager.instance.PlaySFXPitched(9);
+            attackCounter = 0f;
         }
     }
-
-    void SetStats()
-    {
-        damager.damageAmount = stats[weaponLevel].damage;
-        damager.lifeTime = stats[weaponLevel].duration;
-
-        damager.transform.localScale = Vector3.one * stats[weaponLevel].range;
-
-        attackCounter = 0f;
-    }
 }
+

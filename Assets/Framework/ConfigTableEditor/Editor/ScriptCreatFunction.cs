@@ -7,8 +7,8 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-namespace TocClient
-	{
+namespace VampireSLike
+{
 	public class ScriptCreatFunction : Editor
 	{
 		const string PUBLIC = "public";
@@ -61,7 +61,7 @@ namespace TocClient
 			builder.AppendLine("using System;");
 			builder.AppendLine("using System.Collections.Generic;");
 			builder.AppendLine("");
-			builder.AppendLine("namespace TocClient {");
+			builder.AppendLine("namespace VampireSLike {");
 			builder.AppendLine("    public class Cfg_" + name);
 			builder.AppendLine("    {");
 			for (int i = 0; i < memberCount; i++)

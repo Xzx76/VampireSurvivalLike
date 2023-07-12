@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace TocClient
+namespace VampireSLike
 {
     /// <summary>
     /// 主界面

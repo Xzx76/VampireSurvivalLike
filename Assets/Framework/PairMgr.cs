@@ -2,10 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using LitJson;
-using TocClient;
 using UnityEngine;
 
-namespace TocClient
+namespace VampireSLike
 {
     public class PairMgr : MonoSingleton<PairMgr>
     {

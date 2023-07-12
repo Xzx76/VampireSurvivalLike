@@ -2,50 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZoneWeapon : Weapon
+namespace VampireSLike
 {
-    public EnemyDamager damager;
-
-    private float spawnTime, spawnCounter;
-
-    // Start is called before the first frame update
-    void Start()
+    public class ZoneWeapon : Weapon
     {
-        SetStats();
-    }
+        public EnemyDamager damager;
+        private float spawnTime, spawnCounter;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (statsUpdated == true)
+        // Start is called before the first frame update
+        void Start()
         {
-            statsUpdated = false;
-
             SetStats();
         }
 
-        spawnCounter -= Time.deltaTime;
-        if(spawnCounter <= 0f)
+        // Update is called once per frame
+        void Update()
         {
-            spawnCounter = spawnTime;
+            if (statsUpdated == true)
+            {
+                statsUpdated = false;
 
-            Instantiate(damager, damager.transform.position, Quaternion.identity, transform).gameObject.SetActive(true);
+                SetStats();
+            }
 
-            SFXManager.instance.PlaySFXPitched(10);
+            spawnCounter -= Time.deltaTime;
+            if (spawnCounter <= 0f)
+            {
+                spawnCounter = spawnTime;
+
+                Instantiate(damager, damager.transform.position, Quaternion.identity, transform).gameObject.SetActive(true);
+
+                SFXManager.instance.PlaySFXPitched(10);
+            }
+        }
+
+        void SetStats()
+        {
+            damager.damageAmount = stats[weaponLevel].damage;
+            damager.lifeTime = stats[weaponLevel].duration;
+
+            damager.timeBetweenDamage = stats[weaponLevel].speed;
+
+            damager.transform.localScale = Vector3.one * stats[weaponLevel].range;
+
+            spawnTime = stats[weaponLevel].timeBetweenAttacks;
+
+            spawnCounter = 0f;
         }
     }
-
-    void SetStats()
-    {
-        damager.damageAmount = stats[weaponLevel].damage;
-        damager.lifeTime = stats[weaponLevel].duration;
-
-        damager.timeBetweenDamage = stats[weaponLevel].speed;
-
-        damager.transform.localScale = Vector3.one * stats[weaponLevel].range;
-
-        spawnTime = stats[weaponLevel].timeBetweenAttacks;
-
-        spawnCounter = 0f;
-    }
 }
+

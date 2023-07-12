@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 
-namespace TocClient
+namespace VampireSLike
 {
 	public class Cfg_Serializable
 	{

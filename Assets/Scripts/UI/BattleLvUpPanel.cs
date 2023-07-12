@@ -4,10 +4,10 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-namespace TocClient
+namespace VampireSLike
 {
     /// <summary>
-    /// 主界面
+    /// 战斗升级界面
     /// </summary>
     public class BattleLvUpPanel : BasePanel
     {

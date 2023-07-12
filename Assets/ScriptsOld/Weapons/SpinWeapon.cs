@@ -2,67 +2,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinWeapon : Weapon
+namespace VampireSLike
 {
-    public float rotateSpeed;
-
-    public Transform holder, fireballToSpawn;
-
-    public float timeBetweenSpawn;
-    private float spawnCounter;
-
-    public EnemyDamager damager;
-
-    // Start is called before the first frame update
-    void Start()
+    public class SpinWeapon : Weapon
     {
-        SetStats();
+        public float rotateSpeed;
 
-        //UIController.instance.levelUpButtons[0].UpdateButtonDisplay(this);
-    }
+        public Transform holder, fireballToSpawn;
 
-    // Update is called once per frame
-    void Update()
-    {
-        //holder.rotation = Quaternion.Euler(0f, 0f, holder.rotation.eulerAngles.z + (rotateSpeed * Time.deltaTime));
-        holder.rotation = Quaternion.Euler(0f, 0f, holder.rotation.eulerAngles.z + (rotateSpeed * Time.deltaTime * stats[weaponLevel].speed));
+        public float timeBetweenSpawn;
+        private float spawnCounter;
 
+        public EnemyDamager damager;
 
-        spawnCounter -= Time.deltaTime;
-        if(spawnCounter <= 0)
+        // Start is called before the first frame update
+        void Start()
         {
-            spawnCounter = timeBetweenSpawn;
+            SetStats();
 
-            //Instantiate(fireballToSpawn, fireballToSpawn.position, fireballToSpawn.rotation, holder).gameObject.SetActive(true);
+            //UIController.instance.levelUpButtons[0].UpdateButtonDisplay(this);
+        }
 
-            for(int i = 0; i < stats[weaponLevel].amount; i++)
+        // Update is called once per frame
+        void Update()
+        {
+            //holder.rotation = Quaternion.Euler(0f, 0f, holder.rotation.eulerAngles.z + (rotateSpeed * Time.deltaTime));
+            holder.rotation = Quaternion.Euler(0f, 0f, holder.rotation.eulerAngles.z + (rotateSpeed * Time.deltaTime * stats[weaponLevel].speed));
+
+
+            spawnCounter -= Time.deltaTime;
+            if (spawnCounter <= 0)
             {
-                float rot = (360f / stats[weaponLevel].amount) * i;
+                spawnCounter = timeBetweenSpawn;
 
-                Instantiate(fireballToSpawn, fireballToSpawn.position, Quaternion.Euler(0f, 0f, rot), holder).gameObject.SetActive(true);
+                //Instantiate(fireballToSpawn, fireballToSpawn.position, fireballToSpawn.rotation, holder).gameObject.SetActive(true);
 
-                SFXManager.instance.PlaySFX(8);
+                for (int i = 0; i < stats[weaponLevel].amount; i++)
+                {
+                    float rot = (360f / stats[weaponLevel].amount) * i;
+
+                    Instantiate(fireballToSpawn, fireballToSpawn.position, Quaternion.Euler(0f, 0f, rot), holder).gameObject.SetActive(true);
+
+                    SFXManager.instance.PlaySFX(8);
+                }
+            }
+
+            if (statsUpdated == true)
+            {
+                statsUpdated = false;
+
+                SetStats();
             }
         }
 
-        if(statsUpdated == true)
+        public void SetStats()
         {
-            statsUpdated = false;
+            damager.damageAmount = stats[weaponLevel].damage;
 
-            SetStats();
+            transform.localScale = Vector3.one * stats[weaponLevel].range;
+
+            timeBetweenSpawn = stats[weaponLevel].timeBetweenAttacks;
+
+            damager.lifeTime = stats[weaponLevel].duration;
+
+            spawnCounter = 0f;
         }
     }
-
-    public void SetStats()
-    {
-        damager.damageAmount = stats[weaponLevel].damage;
-
-        transform.localScale = Vector3.one * stats[weaponLevel].range;
-
-        timeBetweenSpawn = stats[weaponLevel].timeBetweenAttacks;
-
-        damager.lifeTime = stats[weaponLevel].duration;
-
-        spawnCounter = 0f;
-    }
 }
+

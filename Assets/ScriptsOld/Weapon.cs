@@ -2,36 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace VampireSLike
 {
-    public List<WeaponStats> stats;
-    public int weaponLevel;
-
-    [HideInInspector]
-    public bool statsUpdated;
-
-    public Sprite icon;
-
-    public void LevelUp()
+    public class Weapon : MonoBehaviour
     {
-        if(weaponLevel < stats.Count - 1)
+        public List<WeaponStats> stats;
+        public int weaponLevel;
+        public string WeaponName;
+        [HideInInspector]
+        public bool statsUpdated;
+
+        public Sprite icon;
+
+        public void LevelUp()
         {
-            weaponLevel++;
-
-            statsUpdated = true;
-
-            if(weaponLevel >= stats.Count - 1)
+            if (weaponLevel < stats.Count - 1)
             {
-                PlayerController.instance.fullyLevelledWeapons.Add(this);
-                PlayerController.instance.assignedWeapons.Remove(this);
+                weaponLevel++;
+
+                statsUpdated = true;
+
+                if (weaponLevel >= stats.Count - 1)
+                {
+                    BattleManager.Instance.PlayerCtrl.fullyLevelledWeapons.Add(this);
+                    BattleManager.Instance.PlayerCtrl.assignedWeapons.Remove(this);
+                }
             }
         }
     }
+
+    [System.Serializable]
+    public class WeaponStats
+    {
+        public float speed, damage, range, timeBetweenAttacks, amount, duration;
+        public string upgradeText;
+    }
 }
 
-[System.Serializable]
-public class WeaponStats
-{
-    public float speed, damage, range, timeBetweenAttacks, amount, duration;
-    public string upgradeText;
-}

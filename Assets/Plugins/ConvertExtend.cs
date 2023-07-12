@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-namespace TocClient
+namespace VampireSLike
 {
 	/// <summary>
 	/// 格式转换扩展

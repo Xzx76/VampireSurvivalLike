@@ -5,131 +5,136 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UIController : MonoBehaviour
+namespace VampireSLike
 {
-    public static UIController instance;
-    private void Awake()
+    public class UIController : MonoBehaviour
     {
-        instance = this;
-    }
-
-    public Slider explvlSlider;
-    public TMP_Text expLvlText;
-
-    public LevelUpSelectionButton[] levelUpButtons;
-
-    public GameObject levelUpPanel;
-
-    public TMP_Text coinText;
-
-    public PlayerStatUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickupRangeUpgradeDisplay, maxWeaponsUpgradeDisplay;
-
-    public TMP_Text timeText;
-
-    public GameObject levelEndScreen;
-    public TMP_Text endTimeText;
-
-    public string mainMenuName;
-
-    public GameObject pauseScreen;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        public static UIController instance;
+        private void Awake()
         {
-            PauseUnpause();
+            instance = this;
         }
-    }
 
-    public void UpdateExperience(int currentExp, int levelExp, int currentLvl)
-    {
-        explvlSlider.maxValue = levelExp;
-        explvlSlider.value = currentExp;
+        public Slider explvlSlider;
+        public TMP_Text expLvlText;
 
-        expLvlText.text = "Level: " + currentLvl;
-    }
+        public LevelUpSelectionButton[] levelUpButtons;
 
-    public void SkipLevelUp()
-    {
-        levelUpPanel.SetActive(false);
-        Time.timeScale = 1f;
-    }
+        public GameObject levelUpPanel;
 
-    public void UpdateCoins()
-    {
-        coinText.text = "Coins: " + CoinController.instance.currentCoins;
-    }
+        public TMP_Text coinText;
 
-    public void PurchaseMoveSpeed()
-    {
-        PlayerStatController.instance.PurchaseMoveSpeed();
-        SkipLevelUp();
-    }
+        public PlayerStatUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickupRangeUpgradeDisplay, maxWeaponsUpgradeDisplay;
 
-    public void PurchaseHealth()
-    {
-        PlayerStatController.instance.PurchaseHealth();
-        SkipLevelUp();
-    }
+        public TMP_Text timeText;
 
-    public void PurchasePickupRange()
-    {
-        PlayerStatController.instance.PurchasePickupRange();
-        SkipLevelUp();
-    }
+        public GameObject levelEndScreen;
+        public TMP_Text endTimeText;
 
-    public void PurchaseMaxWeapons()
-    {
-        PlayerStatController.instance.PurchaseMaxWeapons();
-        SkipLevelUp();
-    }
+        public string mainMenuName;
 
-    public void UpdateTimer(float time)
-    {
-        float minutes = Mathf.FloorToInt( time / 60f);
-        float seconds = Mathf.FloorToInt( time % 60);
+        public GameObject pauseScreen;
 
-        timeText.text = "Time: " + minutes + ":" + seconds.ToString("00");
-    }
-
-    public void GoToMainMenu()
-    {
-        SceneManager.LoadScene(mainMenuName);
-        Time.timeScale = 1f;
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1f;
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-    public void PauseUnpause()
-    {
-        if (pauseScreen.activeSelf == false)
+        // Start is called before the first frame update
+        void Start()
         {
-            pauseScreen.SetActive(true);
-            Time.timeScale = 0f;
-        } else
+
+        }
+
+        // Update is called once per frame
+        void Update()
         {
-            
-            pauseScreen.SetActive(false);
-            if (levelUpPanel.activeSelf == false)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Time.timeScale = 1f;
+                PauseUnpause();
+            }
+        }
+
+        public void UpdateExperience(int currentExp, int levelExp, int currentLvl)
+        {
+            explvlSlider.maxValue = levelExp;
+            explvlSlider.value = currentExp;
+
+            expLvlText.text = "Level: " + currentLvl;
+        }
+
+        public void SkipLevelUp()
+        {
+            levelUpPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
+
+        public void UpdateCoins()
+        {
+            coinText.text = "Coins: " + CoinController.instance.currentCoins;
+        }
+
+        public void PurchaseMoveSpeed()
+        {
+            PlayerStatController.instance.PurchaseMoveSpeed();
+            SkipLevelUp();
+        }
+
+        public void PurchaseHealth()
+        {
+            PlayerStatController.instance.PurchaseHealth();
+            SkipLevelUp();
+        }
+
+        public void PurchasePickupRange()
+        {
+            PlayerStatController.instance.PurchasePickupRange();
+            SkipLevelUp();
+        }
+
+        public void PurchaseMaxWeapons()
+        {
+            PlayerStatController.instance.PurchaseMaxWeapons();
+            SkipLevelUp();
+        }
+
+        public void UpdateTimer(float time)
+        {
+            float minutes = Mathf.FloorToInt(time / 60f);
+            float seconds = Mathf.FloorToInt(time % 60);
+
+            timeText.text = "Time: " + minutes + ":" + seconds.ToString("00");
+        }
+
+        public void GoToMainMenu()
+        {
+            SceneManager.LoadScene(mainMenuName);
+            Time.timeScale = 1f;
+        }
+
+        public void Restart()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Time.timeScale = 1f;
+        }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
+
+        public void PauseUnpause()
+        {
+            if (pauseScreen.activeSelf == false)
+            {
+                pauseScreen.SetActive(true);
+                Time.timeScale = 0f;
+            }
+            else
+            {
+
+                pauseScreen.SetActive(false);
+                if (levelUpPanel.activeSelf == false)
+                {
+                    Time.timeScale = 1f;
+                }
             }
         }
     }
 }
+

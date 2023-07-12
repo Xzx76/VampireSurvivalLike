@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 
-namespace TocClient
+namespace VampireSLike
 {
     public class AssetManager : MonoSingleton<AssetManager>
     {

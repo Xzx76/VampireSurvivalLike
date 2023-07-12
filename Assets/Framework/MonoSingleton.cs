@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TocClient
+namespace VampireSLike
 {
     /// <summary>
     /// 单例（MonoBehaviour）

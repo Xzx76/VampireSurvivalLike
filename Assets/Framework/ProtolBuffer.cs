@@ -1,8 +1,8 @@
-﻿using ProtoBuf;
+using ProtoBuf;
 using System;
 using System.IO;
 
-namespace TocClient
+namespace VampireSLike
 {
     public class ProtolBuffer
     {
