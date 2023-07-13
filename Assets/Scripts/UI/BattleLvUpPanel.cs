@@ -20,7 +20,7 @@ namespace VampireSLike
         private Text _coinText;
         private Text _levelText;
 
-        private void Start()
+        private void Awake()
         {
             _skipLvUp = UnityHelper.GetComponent<Button>(gameObject, "Bg/Window/Skip");
             for (int i = 0; i < 3; i++)
@@ -37,25 +37,46 @@ namespace VampireSLike
         }
         public override void OnResume()
         {
-            this.gameObject.SetActive(true);
             _canvasGroup.blocksRaycasts = true;
         }
         public override void OnExit()
         {
             this.gameObject.SetActive(false);
+            Time.timeScale = 1f;
         }
         public override void OnEnter()
         {
+            SetLvUpItems(ExperienceLevelController.instance.weaponsToUpgrade);
+            this.gameObject.SetActive(true);
             Time.timeScale = 0f;
         }
         private void SetLvUpItems(List<Weapon> weapons)
         {
-            for (int i = 0; i < weapons.Count; i++)
-            { 
-                Button click = UnityHelper.GetComponent<Button>(gameObject, "Time/num");
-                Text nameLevel = UnityHelper.GetComponent<Text>(gameObject, "nameLevel");
-                Text introduce = UnityHelper.GetComponent<Text>(gameObject, "introduce");
-                Image Icon = UnityHelper.GetComponent<Image>(gameObject, "image");
+            for (int i = 0; i < _lvUpItems.Length; i++)
+            {
+                int idx = i;
+                if (idx >= weapons.Count)
+                    _lvUpItems[idx].gameObject.SetActive(false);
+                else
+                {
+                    _lvUpItems[idx].gameObject.SetActive(true);
+                    Button click = _lvUpItems[i].gameObject.GetComponent<Button>();
+                    Text nameLevel = UnityHelper.GetComponent<Text>(_lvUpItems[i].gameObject, "nameLevel");
+                    Text introduce = UnityHelper.GetComponent<Text>(_lvUpItems[i].gameObject, "introduce");
+                    Image Icon = UnityHelper.GetComponent<Image>(_lvUpItems[i].gameObject, "Image");
+                    nameLevel.text = weapons[idx].WeaponName + " - Lvl " + weapons[idx].weaponLevel;
+                    introduce.text = weapons[idx].stats[weapons[idx].weaponLevel].upgradeText;
+                    Icon.sprite = weapons[idx].icon;
+                    click.onClick.RemoveAllListeners();
+                    click.onClick.AddListener(()=>
+                    {
+                        if (weapons[idx].IsEquiped)
+                            weapons[idx].LevelUp();
+                        else
+                            BattleManager.Instance.PlayerCtrl.AddWeapon(weapons[idx]);
+                        UIManager.Instance.PopPanel();
+                    });
+                }
             }
         }
         private void AddAllListener()
@@ -63,7 +84,7 @@ namespace VampireSLike
             _skipLvUp.onClick.AddListener(()=>
             {
                 Time.timeScale = 0f;
-                UIManager.Instance.PopPanel();
+                UIController.instance.SkipLevelUp();
             });
 /*            MsgSystem.Instance.AddListener(Constants.Msg_BattleCoinChange,()=>
             {

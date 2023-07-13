@@ -24,9 +24,9 @@ namespace VampireSLike
                 AddWeapon(Random.Range(0, unassignedWeapons.Count));
             }
 
-            moveSpeed = PlayerStatController.instance.moveSpeed[0].value;
-            pickupRange = PlayerStatController.instance.pickupRange[0].value;
-            maxWeapons = Mathf.RoundToInt(PlayerStatController.instance.maxWeapons[0].value);
+            moveSpeed = 5f;
+            pickupRange = 5f;
+            maxWeapons = 4;
         }
 
         // Update is called once per frame
@@ -62,6 +62,7 @@ namespace VampireSLike
                 {
                     obj.transform.SetParent(WeaponHolder);
                     obj.transform.position = Vector3.zero;
+                    obj.GetComponent<Weapon>().IsEquiped = true;
                     assignedWeapons.Add(obj.GetComponent<Weapon>());
                     obj.SetActive(true);
                     unassignedWeapons.RemoveAt(weaponNumber);
@@ -75,6 +76,7 @@ namespace VampireSLike
             {
                 obj.transform.SetParent(WeaponHolder);
                 obj.transform.position = Vector3.zero;
+                obj.GetComponent<Weapon>().IsEquiped = true;
                 assignedWeapons.Add(obj.GetComponent<Weapon>());
                 obj.SetActive(true);
                 unassignedWeapons.Remove(weaponToAdd);

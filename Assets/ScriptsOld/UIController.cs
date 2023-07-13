@@ -52,53 +52,52 @@ namespace VampireSLike
 
         public void UpdateExperience(int currentExp, int levelExp, int currentLvl)
         {
-            explvlSlider.maxValue = levelExp;
+            MsgSystem.Instance.Dispatch(Constants.Msg_BattleExpChange, currentExp/ (float)levelExp,currentLvl);
+/*            explvlSlider.maxValue = levelExp;
             explvlSlider.value = currentExp;
 
-            expLvlText.text = "Level: " + currentLvl;
+            expLvlText.text = "Level: " + currentLvl;*/
         }
 
         public void SkipLevelUp()
         {
-            levelUpPanel.SetActive(false);
+            UIManager.Instance.PopPanel();
             Time.timeScale = 1f;
         }
 
         public void UpdateCoins()
         {
-            coinText.text = "Coins: " + CoinController.instance.currentCoins;
+            MsgSystem.Instance.Dispatch(Constants.Msg_BattleCoinChange);
+            //coinText.text = "Coins: " + CoinController.instance.currentCoins;
         }
 
         public void PurchaseMoveSpeed()
         {
-            PlayerStatController.instance.PurchaseMoveSpeed();
+            //PlayerStatController.instance.PurchaseMoveSpeed();
             SkipLevelUp();
         }
 
         public void PurchaseHealth()
         {
-            PlayerStatController.instance.PurchaseHealth();
+            //PlayerStatController.instance.PurchaseHealth();
             SkipLevelUp();
         }
 
         public void PurchasePickupRange()
         {
-            PlayerStatController.instance.PurchasePickupRange();
+            //PlayerStatController.instance.PurchasePickupRange();
             SkipLevelUp();
         }
 
         public void PurchaseMaxWeapons()
         {
-            PlayerStatController.instance.PurchaseMaxWeapons();
+            //PlayerStatController.instance.PurchaseMaxWeapons();
             SkipLevelUp();
         }
 
         public void UpdateTimer(float time)
         {
-            float minutes = Mathf.FloorToInt(time / 60f);
-            float seconds = Mathf.FloorToInt(time % 60);
-
-            timeText.text = "Time: " + minutes + ":" + seconds.ToString("00");
+            MsgSystem.Instance.Dispatch(Constants.Msg_BattleTimeChange, time);
         }
 
         public void GoToMainMenu()

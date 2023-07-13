@@ -10,7 +10,8 @@ public class Constants
         public const string Cfg_CardInfo = "Config_Cs_CardInfo";
 
         public const string Form_MainMenu = "MainMenu";
-        public const string Form_BattleTest = "BattleTest";
+        public const string Form_BattleUI = "BattleUI";
+        public const string Form_BattleLvUp = "BattleLvUp";
 
         public const string Msg_BattleExpChange = "Msg_BattleExpChange";
         public const string Msg_BattleCoinChange = "Msg_BattleCoinChange";

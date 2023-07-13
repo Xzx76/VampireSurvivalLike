@@ -19,8 +19,8 @@ namespace VampireSLike
                 playerObj.transform.position = Vector3.zero;
                 PlayerCtrl = playerObj.GetComponent<PlayerController>();
                 BattleControl.gameObject.SetActive(true);
+                UIManager.Instance.PushPanel(Constants.Form_BattleUI);
             });
-
         }
     }
 }

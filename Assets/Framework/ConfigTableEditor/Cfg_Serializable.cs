@@ -13,7 +13,7 @@ namespace VampireSLike
 		public static void ClassInstance(List<string[]> datas, string class_name)
 		{
 			//string classname = string.Concat(new string[] { "TocClient.", class_name });
-			string classname = string.Concat(new string[] { "TocClient.Cfg_", class_name });
+			string classname = string.Concat(new string[] { "VampireSLike.Cfg_", class_name });
 			int len = datas.Count;
 			string[] types = datas[1];
 			List<object> lst = new List<object>();

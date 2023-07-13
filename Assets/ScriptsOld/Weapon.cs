@@ -9,6 +9,7 @@ namespace VampireSLike
         public List<WeaponStats> stats;
         public int weaponLevel;
         public string WeaponName;
+        public bool IsEquiped=false;
         [HideInInspector]
         public bool statsUpdated;
 

@@ -23,7 +23,7 @@ namespace   VampireSLike
         // Start is called before the first frame update
         void Start()
         {
-            maxHealth = PlayerStatController.instance.health[0].value;
+            maxHealth = 500;
 
             currentHealth = maxHealth;
 

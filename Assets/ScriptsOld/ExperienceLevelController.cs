@@ -67,10 +67,10 @@ namespace VampireSLike
             }
 
             //PlayerController.instance.activeWeapon.LevelUp();
+            
+            //UIController.instance.levelUpPanel.SetActive(true);
 
-            UIController.instance.levelUpPanel.SetActive(true);
-
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
 
             //UIController.instance.levelUpButtons[1].UpdateButtonDisplay(PlayerController.instance.activeWeapon);
             //UIController.instance.levelUpButtons[0].UpdateButtonDisplay(PlayerController.instance.assignedWeapons[0]);
@@ -104,8 +104,8 @@ namespace VampireSLike
                     availableWeapons.RemoveAt(selected);
                 }
             }
-
-            for (int i = 0; i < weaponsToUpgrade.Count; i++)
+            UIManager.Instance.PushPanel(Constants.Form_BattleLvUp);
+            /*for (int i = 0; i < weaponsToUpgrade.Count; i++)
             {
                 UIController.instance.levelUpButtons[i].UpdateButtonDisplay(weaponsToUpgrade[i]);
             }
@@ -121,9 +121,9 @@ namespace VampireSLike
                 {
                     UIController.instance.levelUpButtons[i].gameObject.SetActive(false);
                 }
-            }
+            }*/
 
-            PlayerStatController.instance.UpdateDisplay();
+            //PlayerStatController.instance.UpdateDisplay();
         }
     }
 }

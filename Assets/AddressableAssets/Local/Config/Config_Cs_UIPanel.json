@@ -1,1 +1,1 @@
-[{"UiPanelScripts":"MainMenuPanel","UiPrefabPath":"UI_MainMenu","UiPanelName":"MainMenu"}]
+[{"UiPanelScripts":"MainMenuPanel","UiPrefabPath":"UI_MainMenu","UiPanelName":"MainMenu"},{"UiPanelScripts":"BattlePanel","UiPrefabPath":"UI_Battle","UiPanelName":"BattleUI"},{"UiPanelScripts":"BattleLvUpPanel","UiPrefabPath":"UI_BattleLvUp","UiPanelName":"BattleLvUp"}]
